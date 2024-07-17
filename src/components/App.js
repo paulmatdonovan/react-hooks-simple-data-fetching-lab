@@ -3,25 +3,22 @@
 import React, { useEffect, useState } from "react";
 
 function App() {
-    const [dog, setDog] = useState([])
+    const [dogPic, setDogPic] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
         fetch("https://dog.ceo/api/breeds/image/random")
             .then((response) => response.json())
             .then((data) => {
-                setDog(data.breeds);
+                setDogPic(data.message);
                 setIsLoaded(true);
             })
     }, [])
     if (!isLoaded) return <p> Loading...</p>
 
-    return (
-        <div>
-            <img src={data.breeds.image} alt="A Random Dog" />
-        </div>
-    )
-        ;
+    return <img src={dogPic} alt="A Random Dog" />
+
+
 }
 
 export default App;
